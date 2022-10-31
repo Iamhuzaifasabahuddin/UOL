@@ -1,0 +1,87 @@
+#Q1
+numlist = []
+
+for i in range(5):
+    num = int(input('Enter a number:'))
+    square = num * num
+    numlist.append(square)
+
+print(numlist)
+
+
+#Q2
+numlist = []
+
+for i in range(5):
+    num = (input("Enter series of number:"))
+    num.split(', ')
+    numlist.append(list(num))
+
+print(numlist)
+
+
+#Q3
+import random
+Dice = []
+Dice1 = 0
+Dice2 = 0
+Dice3 = 0
+Dice4 = 0
+Dice5 = 0
+Dice6 = 0
+
+for i in range(100):
+    generate = random.randint(1,6)
+    if generate == 1:
+        Dice1 = Dice1 + 1
+    elif generate == 2:
+        Dice2 = Dice2 + 1
+    elif generate == 3:
+        Dice3 = Dice3 + 1
+    elif generate == 4:
+        Dice4 =Dice4 + 1
+    elif generate == 5:
+        Dice5 = Dice5 + 1
+    elif generate == 6:
+        Dice6 = Dice6 + 1
+
+Dice.append(Dice1)
+Dice.append(Dice2)
+Dice.append(Dice3)
+Dice.append(Dice4)
+Dice.append(Dice5)
+Dice.append(Dice6)
+
+print("Dice 1:", Dice[0])
+print("Dice 2:", Dice[1])
+print("Dice 3:", Dice[2])
+print("Dice 4:", Dice[3])
+print("Dice 5:", Dice[4])
+print("Dice 6:", Dice[5])
+
+#Q4
+while True:
+    word = str(input("Enter a word"))
+    if word == word[::-1]:
+        print("Its a palindrome")
+    else:
+        print("It's not a palindrome")
+
+
+OR
+
+
+
+word = str(input("Enter a word: "))
+listed = list(word)
+for i in range(len(word)//2):
+    if listed[i] == listed[-1]:
+          print("Is a palindrome")
+          break
+    else:
+        print("Its not a palindrome")
+        break
+
+
+
+

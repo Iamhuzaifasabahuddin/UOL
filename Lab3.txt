@@ -1,0 +1,57 @@
+#Q1
+initial = 0
+final = 0
+Total = 0
+initial = int(input("Enter starting range:"))
+final = int(input("Enter final range:"))
+
+for i in range(initial, (final)+ 1):
+    Total = Total + (3*i)
+    
+print(f"The total from {initial} to {final} is {Total}")
+
+
+#Q2
+# Q1
+initial = 0
+final = 0
+Total = 0
+initial = int(input("Enter starting range:"))
+final = int(input("Enter final range:"))
+
+for i in range(initial, (final) + 1):
+    Total = Total + ((i*i) + (4*i))
+
+print(f"The total from {initial} to {final} is {Total}")
+
+
+
+#Q3
+num = 2
+total = 0
+factor = 1
+
+for i in range(2,9):
+    factor = factor * i
+    if i == 2 or i == 6:
+        total = total + (num / factor)
+        num = num + 2
+    if i == 4 or i == 8:
+        total = (total ) - (num / factor)
+        num = num + 2
+print(total)
+
+
+
+
+#Q4
+vowel = "AEIOUaeiou"
+word = ''
+vowel_word = 0
+for i in range(0,10):
+    word = str(input("Enter a word"))
+    if word[0] in vowel:
+        vowel_word = vowel_word + 1
+    else:
+        print(f"{word} has no vowels")
+print(f"Words starting with vowels in total are {vowel_word}")
