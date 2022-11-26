@@ -1,0 +1,95 @@
+#Q1
+def  unique_data_items(data):
+    unique_nums = ()
+    unique_words = ()
+    for item in data:
+        if item[0] not in unique_nums:
+            unique_nums = unique_nums+(item[0],)
+        if item[1] not in unique_words:
+            unique_words = unique_words + (item[1],)
+    return (len(unique_nums),len(unique_words))
+
+
+items = ((45, 'foot'), (21, 'basket'), (10, 'hand'), (24, 'foot'), (21,
+'hand'))
+print(unique_data_items(items))
+
+
+#Q2
+def Count_negatives_1(Negativenumbers):
+    negative = 0
+    total = 0
+    average = 0
+    negative_count = 0
+    negative = sorted(Negativenumbers)
+    for item in negative:
+        if item < 0:
+            negative_count += 1
+            total += item
+        else:
+            continue
+    average = total / negative_count
+    return (negative_count,average)
+
+print(Count_negatives_1([-2, 4, -3, 1]))
+
+
+import numpy as np
+def Count_negatives_2(Negativenumbers):
+    x_neg_total = 0
+    x_neg_count = 0
+    average = 0
+
+    x_negatives = np.array(Negativenumbers)
+    x_neg_count = x_negatives[x_negatives < 0]
+    x_neg_total = np.sum(x_neg_count)
+    average = x_neg_total / len(x_neg_count)
+    return (len(x_neg_count),average)
+
+print(Count_negatives_2([-2, 4, -3, 1]))
+
+#Q3
+import numpy as np
+def read_data(file):
+    try:
+        array = []
+        f = open(file, 'r')
+        for line in f:
+            array.append([float(x) for x in line.split()])
+        return (np.array(array))
+    except FileNotFoundError:
+        print(f"File not found{file}")
+
+def rows_averages(values):
+    try:
+        average = []
+        for value in values:
+            avg = sum(value) / len(value)
+            average.append(avg)
+        return average
+    except ValueError:
+        print("Something went wrong")
+
+def column_averages(values):
+    try:
+        return np.mean(values,axis=0)
+    except ValueError:
+        print("Something went wrong")
+
+def results_averages_1(average):
+    for i in range(1, len(average) + 1):
+        print("average of row", i, "is", float("{:.3f}".format(average[i - 1])))
+
+def results_averages_2(average_2):
+    for i in range(1, len(average_2) + 1):
+        print("average of Column", i, "is", float("{:.3f}".format(average_2[i - 1])))
+
+results_averages_1(rows_averages(read_data("data.txt")))
+results_averages_2(column_averages(read_data("data.txt")))
+
+
+
+
+
+
+

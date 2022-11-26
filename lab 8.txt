@@ -1,0 +1,128 @@
+#Q1
+def word_count(file):
+    try:
+        f = open(file, 'r')
+        try:
+            d = dict()
+            for line in f:
+                line = line.split()
+                for word in line:
+                    if word not in d:
+                        d[word] = 1
+                    else:
+                        d[word] = d[word] + 1
+            keys = list(d.keys())
+            count_word = 0
+            for k in keys:
+                count_word += d[k]
+            return (d,count_word)
+        except:
+            print("Something went wrong")
+        finally:
+            f.close()
+    except FileNotFoundError:
+        print("File not found")
+
+
+file = "Sample.txt"
+(d,count_word) = word_count(file)
+print("Histogram: ",d)
+print("word count is: ",count_word)
+
+
+#Q2 part 1
+def word_search(docs, word):
+    try:
+        d = dict()
+        for document in docs:
+            f = open(document, 'r')
+            for line in f:
+                data = line.strip()
+                data = data.lower()
+                data = data.split(" ")
+                if word in data:
+                    d[word] = document
+                    return d
+                else:
+                    continue
+        else:
+            print("No word found")
+    except FileNotFoundError:
+        return "No document file exsists"
+
+
+docs = ["doc1.txt","doc2.txt","doc3.txt"]
+print(word_search(docs, 'casino'))
+
+
+#Q2 part 2
+def word_search(docs, word):
+    try:
+        d = set()
+        for document in docs:
+            f = open(document, 'r')
+            for line in f:
+                data = line.strip()
+                data = data.lower()
+                data = data.split(" ")
+                if word in data:
+                    d.add(document)
+                    return d
+                else:
+                    continue
+        else:
+            print("No word found")
+    except FileNotFoundError:
+        return "No document file exsists"
+
+
+docs = ["doc1.txt","doc2.txt","doc3.txt"]
+print(word_search(docs, 'casino'))
+
+
+
+def multi_word_search(documents, words):
+    keyword_to_docs = {} #inialise dictionary
+    for keyword in words:
+        keyword_to_docs[keyword] = word_search(documents, keyword)
+    return keyword_to_docs
+# call the function
+print(multi_word_search(docs, {'python', 'casino'}))
+
+
+
+
+
+
+
+
+
+
+#Q3 
+def winners(gamelist):
+    itemdict = dict()
+    racersdict = dict()
+    itemvalues = []
+    finishvalues = []
+    name_val = []
+    namedict = dict()
+    for items in gamelist:
+        if items['name'] == None:
+            items['name'] = 'unknown'
+        if items['finish'] == 1:
+            name_val.append(items['name'])
+            itemvalues.append(items['items'])
+    finishvalues = [x for loop in itemvalues for x in loop]
+    for item in finishvalues:
+        if item not in itemdict:
+            itemdict[item] = 1
+        else:
+            itemdict[item] += 1
+    for item in name_val:
+        namedict[item] = "position 1"
+
+    return namedict | itemdict
+
+
+print(winners([{'name': 'Peach', 'items': ['green shell', 'banana', 'green shell',], 'finish': 1},{'name': 'Bowser', 'items': ['green shell',], 'finish': 3}, {'name': None, 'items': ['mushroom',], 'finish': 1},{'name': 'Toad', 'items': ['green shell', 'mushroom'], 'finish':2}]))
+

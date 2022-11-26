@@ -1,0 +1,144 @@
+#Q1
+def filecount(file1):
+    try:
+        newstring =''
+        f = open(file1, 'r')
+        for lines in f:
+            new = lines.strip()
+            newstring += new.upper()
+        return newstring
+    except FileNotFoundError:
+        return "file not found"
+
+print(filecount("text.txt"))
+
+
+
+#Q2
+import random as rd
+
+
+def mysqrt(x, eps):
+    try:
+        assert x >= 0
+        assert eps >= 0
+        count = 0
+        g = rd.uniform(0, x)  # random guess
+        gsquared = g * g
+        while (gsquared < x - eps or gsquared > x + eps):
+
+            count = count + 1
+            y = "At iteration", count, "Value of g is", float("{:.3f}".format(g))
+            g = (g + x / g) / 2  # new g is average of g and x/g
+            gsquared = g * g
+            f = open("output.txt", "a")
+            f.write("At iteration:" +  str(count) + " Value of g is: " + str(float("{:.3f}".format(g))))
+            f.write('\n')
+
+            f.close()
+        return g
+    except AssertionError:
+        return ("Assertion violated")
+    except:
+        return ("Something went wrong")
+print(mysqrt(4,1e-5))
+
+
+
+#Q3
+def removeempty(listed):
+    data = listed[:]
+    for row in listed:
+        if row == '':
+            data.remove(row)
+    return data
+
+def read_csv_data(file):
+    try:
+        f = open(file, 'r')
+        data = []
+        for line in f:
+            nline = ''.join(line.split())
+            numbered = nline.split(',')
+            numbered = removeempty(numbered)
+            numbered = [float(i) for i in numbered]
+            data.append(numbered)
+        f.close()
+        return data
+    except FileNotFoundError:
+        return "File not found"
+    except:
+        return "something went wrong"
+
+def averages(values):
+    import numpy as np
+    average = []
+    for value in values:
+        try:
+            if len(value) >0:
+                avg = sum(value)/ len(value)
+                average.append(avg)
+            else:
+                assert (len(value) == 0)
+                average.append(np.nan)
+        except:
+            return "Something went wrong"
+    return average
+
+
+def result(average):
+    for i in range(1,len(average)+1):
+        print("average of row",i, "is",float("{:.3f}".format(average[i-1])))
+
+
+
+result(averages(read_csv_data("data.csv")))
+
+
+def removeempty(listed):
+    data = listed[:]
+    for row in listed:
+        if row == '':
+            data.remove(row)
+    return data
+
+def read_csv_data(file):
+    try:
+        f = open(file, 'r')
+        data = []
+        for line in f:
+            nline = ''.join(line.split())
+            numbered = nline.split(',')
+            numbered = removeempty(numbered)
+            numbered = [float(i) for i in numbered]
+            data.append(numbered)
+        f.close()
+        return data
+    except FileNotFoundError:
+        return "File not found"
+    except:
+        return "something went wrong"
+
+def averages(values):
+    import numpy as np
+    average = []
+    for value in values:
+        try:
+            if len(value) >0:
+                avg = sum(value)/ len(value)
+                average.append(avg)
+            else:
+                assert (len(value) == 0)
+                average.append(np.nan)
+        except:
+            return "Something went wrong"
+    return average
+
+
+def result(average):
+    for i in range(1,len(average)+1):
+        print("average of row",i, "is",float("{:.3f}".format(average[i-1])))
+
+
+
+result(averages(read_csv_data("data.csv")))
